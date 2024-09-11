@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3la-Kam-backend", "3la-Kam-backend\3la-Kam-backend.csproj", "{5DAC85AA-56C7-4BF6-979D-D6ADBADB1DAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DAC85AA-56C7-4BF6-979D-D6ADBADB1DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DAC85AA-56C7-4BF6-979D-D6ADBADB1DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DAC85AA-56C7-4BF6-979D-D6ADBADB1DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DAC85AA-56C7-4BF6-979D-D6ADBADB1DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00304B26-8CB1-4957-A5C7-A5BF30B93E1A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@_3la_Kam_backend_HostAddress = http://localhost:5023
+
+GET {{_3la_Kam_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
