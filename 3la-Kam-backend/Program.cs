@@ -1,4 +1,7 @@
 
+using _3la_Kam_backend.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace _3la_Kam_backend
 {
     public class Program
@@ -13,6 +16,11 @@ namespace _3la_Kam_backend
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<context>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
+            });
 
             var app = builder.Build();
 
