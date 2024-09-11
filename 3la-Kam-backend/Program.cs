@@ -1,5 +1,7 @@
 
 using _3la_Kam_backend.Models;
+using _3la_Kam_backend.Repositoris;
+using _3la_Kam_backend.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace _3la_Kam_backend
@@ -16,6 +18,22 @@ namespace _3la_Kam_backend
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IProductRepo,productService>();
+            builder.Services.AddScoped<ICategoryRipo, CategoryService>();
+
+            builder.Services.AddCors(options =>
+            {
+
+                options.AddPolicy("AllowAllOrigins",
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin() // Allow all origins
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
+
+
 
             builder.Services.AddDbContext<context>(options =>
             {
@@ -31,6 +49,7 @@ namespace _3la_Kam_backend
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("AllowAllOrigins");
             app.UseAuthorization();
 
 

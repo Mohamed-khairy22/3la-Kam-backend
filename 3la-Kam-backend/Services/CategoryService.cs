@@ -1,8 +1,9 @@
 ﻿using _3la_Kam_backend.Models;
+using _3la_Kam_backend.Repositoris;
 
 namespace _3la_Kam_backend.Services
 {
-    public class CategoryService
+    public class CategoryService : ICategoryRipo
     {
         context context;
         public CategoryService(context context)

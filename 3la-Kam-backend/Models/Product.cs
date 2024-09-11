@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace _3la_Kam_backend.Models
 {
@@ -11,6 +12,7 @@ namespace _3la_Kam_backend.Models
         public string imgUrl { get; set; }
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        [JsonIgnore]
         public virtual Category? Category { get; set; }
 
     }
