@@ -2,8 +2,11 @@
 using _3la_Kam_backend.Models;
 using _3la_Kam_backend.Repositoris;
 using _3la_Kam_backend.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace _3la_Kam_backend
 {
@@ -21,9 +24,30 @@ namespace _3la_Kam_backend
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IProductRepo,productService>();
             builder.Services.AddScoped<ICategoryRipo, CategoryService>();
-
+            //--------------------------------------------------------------------------------
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<context>();
+
+            builder.Services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options=>
+            {
+                options.SaveToken=true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer= "http://localhost:5023/",
+                    ValidateAudience = true,
+                    ValidAudience = "http://localhost:4200/",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("klsfdhgfsdf46s584sd5sdfasgegsdfgdsfdsgda@$#%^%#%@"))
+
+                };
+            });
+            //--------------------------------------------------------------------------------
 
             builder.Services.AddCors(options =>
             {
