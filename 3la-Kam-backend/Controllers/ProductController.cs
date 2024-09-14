@@ -45,8 +45,9 @@ namespace _3la_Kam_backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostProduct(Product newproduct)
+        public IActionResult PostProduct([FromBody]Product newproduct)
         {
+            
             if (ModelState.IsValid)
             {
                 productRepo.Insert(newproduct);

@@ -33,9 +33,16 @@ namespace _3la_Kam_backend.Services
             return context.products.Where(c => c.CategoryId == catId).Where(c => c.Name.ToLower().StartsWith(name.ToLower())).ToList();
         }
 
-        public void Insert(Product product)
+        public void Insert(Product newProduct)
         {
-            context.products.Add(product);
+            Product oldProduct = new Product();
+            oldProduct.Name = newProduct.Name;
+            oldProduct.imgUrl = newProduct.imgUrl;
+            oldProduct.Price = newProduct.Price;
+            oldProduct.Quantity = newProduct.Quantity;
+            oldProduct.CategoryId = newProduct.CategoryId;
+
+            context.products.Add(oldProduct);
             context.SaveChanges();
         }
         public void Update(int id, Product newProduct)
@@ -44,7 +51,8 @@ namespace _3la_Kam_backend.Services
             oldProduct.Name = newProduct.Name;
             oldProduct.imgUrl = newProduct.imgUrl;
             oldProduct.Price = newProduct.Price;
-            oldProduct.Quantity = newProduct.Quantity;
+            oldProduct.Quantity = newProduct.Quantity;  
+            oldProduct.CategoryId = newProduct.CategoryId;
             context.SaveChanges();
         }
         public void Delete(int id)
