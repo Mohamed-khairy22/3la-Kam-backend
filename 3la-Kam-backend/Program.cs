@@ -40,10 +40,10 @@ namespace _3la_Kam_backend
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuer = true,
-                    ValidIssuer= "http://localhost:5023/",
+                    ValidIssuer= builder.Configuration["JWT:issuerIP"],
                     ValidateAudience = true,
-                    ValidAudience = "http://localhost:4200/",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("klsfdhgfsdf46s584sd5sdfasgegsdfgdsfdsgda@$#%^%#%@"))
+                    ValidAudience = builder.Configuration["JWT:audienceIp"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:securityKey"]))   
 
                 };
             });

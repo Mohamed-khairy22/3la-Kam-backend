@@ -15,10 +15,12 @@ namespace _3la_Kam_backend.Controllers
     public class AccountController : ControllerBase
     {
         private UserManager<ApplicationUser> userManager;
+        private IConfiguration config;
 
-        public AccountController(UserManager<ApplicationUser> UserManager)
+        public AccountController(UserManager<ApplicationUser> UserManager,IConfiguration Config)
         {
             userManager = UserManager;
+            config = Config;
         }
         [HttpPost ("Register")]
         public async Task <IActionResult> register(RegisterDTO userFromRequest)
@@ -62,13 +64,14 @@ namespace _3la_Kam_backend.Controllers
                         userClaims.Add(new Claim(ClaimTypes.NameIdentifier, userFromDB.Id));
                         userClaims.Add(new Claim(ClaimTypes.Name,userFromDB.UserName));
 
-                        var signInKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("klsfdhgfsdf46s584sd5sdfasgegsdfgdsfdsgda@$#%^%#%@"));
+                        var signInKey = new SymmetricSecurityKey(Encoding.UTF8.
+                                        GetBytes(config["JWT:securityKey"]));
                         var signingCred = new SigningCredentials(signInKey,SecurityAlgorithms.HmacSha256);
 
                         //design token
                         JwtSecurityToken myToken = new JwtSecurityToken(
-                            audience: "http://localhost:4200/",
-                            issuer: "http://localhost:5023/",
+                            audience: config["JWT:audienceIp"],
+                            issuer: config["JWT:issuerIp"],
                             expires: DateTime.UtcNow.AddHours(1),
                             claims: userClaims,
                             signingCredentials: signingCred
