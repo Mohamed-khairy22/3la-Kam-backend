@@ -2,6 +2,7 @@
 using _3la_Kam_backend.Models;
 using _3la_Kam_backend.Repositoris;
 using _3la_Kam_backend.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace _3la_Kam_backend
@@ -20,6 +21,9 @@ namespace _3la_Kam_backend
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IProductRepo,productService>();
             builder.Services.AddScoped<ICategoryRipo, CategoryService>();
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<context>();
 
             builder.Services.AddCors(options =>
             {
